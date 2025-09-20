@@ -1,0 +1,772 @@
+{
+  "metadata": {
+    "titulo": "Análise de Qualidade de Sistemas Java: Relação entre Processo de Desenvolvimento e Características de Qualidade",
+    "autores": [
+      "Pedro Afonso"
+    ],
+    "data_geracao": "2025-09-20T20:53:03.600779",
+    "versao": "1.0"
+  },
+  "resumo_executivo": {
+    "objetivo": "Análise da relação entre características de processo de desenvolvimento e qualidade de código em repositórios Java",
+    "metodologia": "Análise de correlação entre métricas de processo (popularidade, maturidade, atividade, tamanho) e métricas de qualidade CK (CBO, DIT, LCOM)",
+    "amostra": {
+      "total_repositorios_coletados": 1000,
+      "repositorios_analisados": 750,
+      "taxa_sucesso": "75.0%"
+    },
+    "principais_achados": [
+      {
+        "questao": "Relação entre popularidade (estrelas) e características de qualidade",
+        "correlacoes_significativas": [
+          "cbo_mean: -0.116",
+          "lcom_mean: -0.185"
+        ]
+      },
+      {
+        "questao": "Relação entre maturidade (idade) e características de qualidade",
+        "correlacoes_significativas": [
+          "dit_mean: 0.156"
+        ]
+      },
+      {
+        "questao": "Relação entre atividade (forks) e características de qualidade",
+        "correlacoes_significativas": [
+          "cbo_mean: -0.086",
+          "dit_mean: 0.074",
+          "lcom_mean: -0.178"
+        ]
+      }
+    ]
+  },
+  "introducao": {
+    "contexto": "A qualidade de software é um fator crítico para o sucesso de projetos de desenvolvimento",
+    "problema": "Como características do processo de desenvolvimento influenciam a qualidade do código?",
+    "objetivos": [
+      "Analisar relação entre popularidade e qualidade",
+      "Investigar impacto da maturidade na qualidade",
+      "Examinar correlação entre atividade e qualidade",
+      "Avaliar influência do tamanho na qualidade"
+    ],
+    "questoes_pesquisa": [
+      "RQ 01: Qual a relação entre popularidade e qualidade?",
+      "RQ 02: Qual a relação entre maturidade e qualidade?",
+      "RQ 03: Qual a relação entre atividade e qualidade?",
+      "RQ 04: Qual a relação entre tamanho e qualidade?"
+    ]
+  },
+  "metodologia": {
+    "coleta_dados": {
+      "fonte": "GitHub API",
+      "criterio_selecao": "Top 1000 repositórios Java mais populares (stars > 100)",
+      "periodo_coleta": "2024",
+      "ferramentas": [
+        "GitHub Search API",
+        "Git",
+        "CK Tool"
+      ]
+    },
+    "metricas_processo": {
+      "popularidade": "Número de estrelas (stars)",
+      "maturidade": "Idade do repositório em anos",
+      "atividade": "Número de forks",
+      "tamanho": "Linhas de código (LOC) e número de arquivos Java"
+    },
+    "metricas_qualidade": {
+      "cbo": "Coupling Between Objects - Mede acoplamento entre classes",
+      "dit": "Depth Inheritance Tree - Profundidade da árvore de herança",
+      "lcom": "Lack of Cohesion of Methods - Falta de coesão dos métodos"
+    },
+    "analise_estatistica": {
+      "correlacoes": "Spearman (não-paramétrica), Pearson (paramétrica), Kendall",
+      "testes_hipotese": "Mann-Whitney U para comparação de grupos",
+      "normalidade": "Shapiro-Wilk para amostras pequenas",
+      "significancia": "p < 0.05"
+    }
+  },
+  "resultados": {
+    "estatisticas_descritivas": {
+      "process": {
+        "stars": {
+          "count": 750,
+          "mean": 9611.672,
+          "median": 5800.5,
+          "std": 11548.890019391012,
+          "min": 3415.0,
+          "max": 151812.0,
+          "q25": 4393.0,
+          "q75": 9923.5,
+          "skewness": 5.54613142554292,
+          "kurtosis": 45.55336510693473
+        },
+        "forks": {
+          "count": 750,
+          "mean": 2414.0026666666668,
+          "median": 1394.0,
+          "std": 3958.6259645693613,
+          "min": 128.0,
+          "max": 54107.0,
+          "q25": 787.75,
+          "q75": 2484.0,
+          "skewness": 7.109184146660906,
+          "kurtosis": 70.89872343180919
+        },
+        "age_years": {
+          "count": 750,
+          "mean": 9.631106666666666,
+          "median": 9.71,
+          "std": 3.00668218456283,
+          "min": 0.5,
+          "max": 16.91,
+          "q25": 7.9975000000000005,
+          "q75": 11.6625,
+          "skewness": -0.38991373503612226,
+          "kurtosis": 0.18866976657502255
+        },
+        "size_kb": {
+          "count": 750,
+          "mean": 146875.49066666668,
+          "median": 21939.5,
+          "std": 536463.2058476602,
+          "min": 76.0,
+          "max": 7730448.0,
+          "q25": 4287.75,
+          "q75": 88778.5,
+          "skewness": 9.788518028433247,
+          "kurtosis": 114.96348106107465
+        }
+      },
+      "quality": {
+        "cbo_mean": {
+          "count": 750,
+          "mean": 9.162253333333334,
+          "median": 9.34,
+          "std": 2.220888061308668,
+          "min": 2.0,
+          "max": 14.66,
+          "q25": 7.8025,
+          "q75": 10.7375,
+          "skewness": -0.3471768681086779,
+          "kurtosis": -0.185341473600924
+        },
+        "dit_mean": {
+          "count": 750,
+          "mean": 5.5082933333333335,
+          "median": 5.61,
+          "std": 1.2895931482213585,
+          "min": 1.75,
+          "max": 8.58,
+          "q25": 4.6325,
+          "q75": 6.4475,
+          "skewness": -0.24469151537162223,
+          "kurtosis": -0.36252151231807694
+        },
+        "lcom_mean": {
+          "count": 750,
+          "mean": 3.7385466666666667,
+          "median": 3.93,
+          "std": 1.3917785088556676,
+          "min": 0.1,
+          "max": 7.29,
+          "q25": 2.7225,
+          "q75": 4.82,
+          "skewness": -0.3610030029873427,
+          "kurtosis": -0.4665565985422795
+        },
+        "total_classes": {
+          "count": 750,
+          "mean": 35695.278666666665,
+          "median": 5237.0,
+          "std": 121009.36334431732,
+          "min": 5.0,
+          "max": 1657609.0,
+          "q25": 909.0,
+          "q75": 20961.25,
+          "skewness": 8.674904357693137,
+          "kurtosis": 92.81894449726175
+        },
+        "loc_total": {
+          "count": 750,
+          "mean": 7355489.526666666,
+          "median": 1036335.0,
+          "std": 28478046.70775785,
+          "min": 2707.0,
+          "max": 398147759.0,
+          "q25": 214433.5,
+          "q75": 4189352.5,
+          "skewness": 10.408981022375066,
+          "kurtosis": 127.4232251057336
+        }
+      }
+    },
+    "correlacoes": {
+      "stars": {
+        "cbo_mean": {
+          "spearman": {
+            "correlation": -0.11589530584979817,
+            "p_value": 0.0014760620814917016,
+            "significant": true
+          },
+          "pearson": {
+            "correlation": -0.1056633078923384,
+            "p_value": 0.0037675485683031397,
+            "significant": true
+          },
+          "kendall": {
+            "correlation": -0.07677002625799147,
+            "p_value": 0.001665604803045685,
+            "significant": true
+          },
+          "sample_size": 750
+        },
+        "dit_mean": {
+          "spearman": {
+            "correlation": 0.018023322316291716,
+            "p_value": 0.6221498412679102,
+            "significant": false
+          },
+          "pearson": {
+            "correlation": -0.02185265243684737,
+            "p_value": 0.5501517884569765,
+            "significant": false
+          },
+          "kendall": {
+            "correlation": 0.012201170274616665,
+            "p_value": 0.6174497367513435,
+            "significant": false
+          },
+          "sample_size": 750
+        },
+        "lcom_mean": {
+          "spearman": {
+            "correlation": -0.185141163849966,
+            "p_value": 3.289652720262814e-07,
+            "significant": true
+          },
+          "pearson": {
+            "correlation": -0.21004164327033706,
+            "p_value": 6.3398205163335595e-09,
+            "significant": true
+          },
+          "kendall": {
+            "correlation": -0.12611703328286417,
+            "p_value": 2.4312897656129874e-07,
+            "significant": true
+          },
+          "sample_size": 750
+        },
+        "total_classes": {
+          "spearman": {
+            "correlation": 0.18831867166982194,
+            "p_value": 2.044238792417629e-07,
+            "significant": true
+          },
+          "pearson": {
+            "correlation": 0.09305588790462319,
+            "p_value": 0.010780817501290741,
+            "significant": true
+          },
+          "kendall": {
+            "correlation": 0.12588351342626405,
+            "p_value": 2.489417529766169e-07,
+            "significant": true
+          },
+          "sample_size": 750
+        },
+        "loc_total": {
+          "spearman": {
+            "correlation": 0.19389023407695605,
+            "p_value": 8.702882254243084e-08,
+            "significant": true
+          },
+          "pearson": {
+            "correlation": 0.08285538632098695,
+            "p_value": 0.023255784342997847,
+            "significant": true
+          },
+          "kendall": {
+            "correlation": 0.12945631455512138,
+            "p_value": 1.125878756434436e-07,
+            "significant": true
+          },
+          "sample_size": 750
+        }
+      },
+      "forks": {
+        "cbo_mean": {
+          "spearman": {
+            "correlation": -0.08592281858512,
+            "p_value": 0.018596497627702636,
+            "significant": true
+          },
+          "pearson": {
+            "correlation": -0.0809114909799023,
+            "p_value": 0.026705861497369043,
+            "significant": true
+          },
+          "kendall": {
+            "correlation": -0.056536252668027503,
+            "p_value": 0.020592537122081717,
+            "significant": true
+          },
+          "sample_size": 750
+        },
+        "dit_mean": {
+          "spearman": {
+            "correlation": 0.07413426994363387,
+            "p_value": 0.042391341711068176,
+            "significant": true
+          },
+          "pearson": {
+            "correlation": 0.015183773855828758,
+            "p_value": 0.6780283424239516,
+            "significant": false
+          },
+          "kendall": {
+            "correlation": 0.048856845353194095,
+            "p_value": 0.045509404811309405,
+            "significant": true
+          },
+          "sample_size": 750
+        },
+        "lcom_mean": {
+          "spearman": {
+            "correlation": -0.1783654886234341,
+            "p_value": 8.830047618980392e-07,
+            "significant": true
+          },
+          "pearson": {
+            "correlation": -0.19356159525257188,
+            "p_value": 9.15889671502303e-08,
+            "significant": true
+          },
+          "kendall": {
+            "correlation": -0.11974240834057968,
+            "p_value": 9.499548938199572e-07,
+            "significant": true
+          },
+          "sample_size": 750
+        },
+        "total_classes": {
+          "spearman": {
+            "correlation": 0.20322271391335553,
+            "p_value": 1.9668268704118098e-08,
+            "significant": true
+          },
+          "pearson": {
+            "correlation": 0.09119009679591686,
+            "p_value": 0.012476048627538767,
+            "significant": true
+          },
+          "kendall": {
+            "correlation": 0.13581719690942715,
+            "p_value": 2.6169347646185592e-08,
+            "significant": true
+          },
+          "sample_size": 750
+        },
+        "loc_total": {
+          "spearman": {
+            "correlation": 0.21608390618804588,
+            "p_value": 2.2505997254789392e-09,
+            "significant": true
+          },
+          "pearson": {
+            "correlation": 0.07846029215924882,
+            "p_value": 0.031677830561144565,
+            "significant": true
+          },
+          "kendall": {
+            "correlation": 0.14422524099113898,
+            "p_value": 3.4190275947752067e-09,
+            "significant": true
+          },
+          "sample_size": 750
+        }
+      },
+      "age_years": {
+        "cbo_mean": {
+          "spearman": {
+            "correlation": -0.019806941610437466,
+            "p_value": 0.5881052457194891,
+            "significant": false
+          },
+          "pearson": {
+            "correlation": -0.005871610204452399,
+            "p_value": 0.8724605630190007,
+            "significant": false
+          },
+          "kendall": {
+            "correlation": -0.013049227796365047,
+            "p_value": 0.5932065928982213,
+            "significant": false
+          },
+          "sample_size": 750
+        },
+        "dit_mean": {
+          "spearman": {
+            "correlation": 0.1555251006746184,
+            "p_value": 1.8842408473135938e-05,
+            "significant": true
+          },
+          "pearson": {
+            "correlation": 0.17494850105532858,
+            "p_value": 1.4327499404722028e-06,
+            "significant": true
+          },
+          "kendall": {
+            "correlation": 0.10405914131120585,
+            "p_value": 2.0642763939054502e-05,
+            "significant": true
+          },
+          "sample_size": 750
+        },
+        "lcom_mean": {
+          "spearman": {
+            "correlation": 0.06219938403738293,
+            "p_value": 0.0887164754881048,
+            "significant": false
+          },
+          "pearson": {
+            "correlation": 0.07317540897733932,
+            "p_value": 0.045141360048647945,
+            "significant": true
+          },
+          "kendall": {
+            "correlation": 0.041771942806030374,
+            "p_value": 0.08740335925440013,
+            "significant": false
+          },
+          "sample_size": 750
+        },
+        "total_classes": {
+          "spearman": {
+            "correlation": 0.01336505046678791,
+            "p_value": 0.714795820211324,
+            "significant": false
+          },
+          "pearson": {
+            "correlation": 0.12139229105871985,
+            "p_value": 0.0008645794244152954,
+            "significant": true
+          },
+          "kendall": {
+            "correlation": 0.0054006016536399986,
+            "p_value": 0.8249317890562452,
+            "significant": false
+          },
+          "sample_size": 750
+        },
+        "loc_total": {
+          "spearman": {
+            "correlation": 0.021578683376623352,
+            "p_value": 0.5551640996050387,
+            "significant": false
+          },
+          "pearson": {
+            "correlation": 0.11331521193723433,
+            "p_value": 0.0018829126989534388,
+            "significant": true
+          },
+          "kendall": {
+            "correlation": 0.01046943394716296,
+            "p_value": 0.6680378621811789,
+            "significant": false
+          },
+          "sample_size": 750
+        }
+      },
+      "size_kb": {
+        "cbo_mean": {
+          "spearman": {
+            "correlation": 0.5344635183125942,
+            "p_value": 1.2529604784022278e-56,
+            "significant": true
+          },
+          "pearson": {
+            "correlation": 0.11693488076774919,
+            "p_value": 0.001336317371082842,
+            "significant": true
+          },
+          "kendall": {
+            "correlation": 0.36942929183618145,
+            "p_value": 1.0041585086736304e-51,
+            "significant": true
+          },
+          "sample_size": 750
+        },
+        "dit_mean": {
+          "spearman": {
+            "correlation": 0.47989274358100265,
+            "p_value": 1.8477580437812677e-44,
+            "significant": true
+          },
+          "pearson": {
+            "correlation": 0.1275252200855821,
+            "p_value": 0.0004636897666736206,
+            "significant": true
+          },
+          "kendall": {
+            "correlation": 0.3269411931126474,
+            "p_value": 7.419570350384021e-41,
+            "significant": true
+          },
+          "sample_size": 750
+        },
+        "lcom_mean": {
+          "spearman": {
+            "correlation": 0.5465337798041106,
+            "p_value": 1.2419537239454152e-59,
+            "significant": true
+          },
+          "pearson": {
+            "correlation": 0.11808132899528131,
+            "p_value": 0.001196399110430914,
+            "significant": true
+          },
+          "kendall": {
+            "correlation": 0.3837474782107659,
+            "p_value": 1.2720502316884355e-55,
+            "significant": true
+          },
+          "sample_size": 750
+        },
+        "total_classes": {
+          "spearman": {
+            "correlation": 0.9819037299450873,
+            "p_value": 0.0,
+            "significant": true
+          },
+          "pearson": {
+            "correlation": 0.9739022068691987,
+            "p_value": 0.0,
+            "significant": true
+          },
+          "kendall": {
+            "correlation": 0.8896096853351898,
+            "p_value": 5.1855534848248365e-291,
+            "significant": true
+          },
+          "sample_size": 750
+        },
+        "loc_total": {
+          "spearman": {
+            "correlation": 0.9962820200569243,
+            "p_value": 0.0,
+            "significant": true
+          },
+          "pearson": {
+            "correlation": 0.9873338481143894,
+            "p_value": 0.0,
+            "significant": true
+          },
+          "kendall": {
+            "correlation": 0.9470939029817534,
+            "p_value": 0.0,
+            "significant": true
+          },
+          "sample_size": 750
+        }
+      }
+    },
+    "questoes_pesquisa": {
+      "RQ01": {
+        "question": "Relação entre popularidade (estrelas) e características de qualidade",
+        "hypothesis": "Repositórios mais populares tendem a ter melhor qualidade",
+        "results": {
+          "cbo_mean": {
+            "spearman_correlation": -0.11589530584979817,
+            "p_value": 0.0014760620814917016,
+            "significant": true,
+            "interpretation": "Correlação fraca negativa (-0.116) e estatisticamente significativa (p=0.001)"
+          },
+          "dit_mean": {
+            "spearman_correlation": 0.018023322316291716,
+            "p_value": 0.6221498412679102,
+            "significant": false,
+            "interpretation": "Correlação fraca positiva (0.018) mas não estatisticamente não significativa (p=0.622)"
+          },
+          "lcom_mean": {
+            "spearman_correlation": -0.185141163849966,
+            "p_value": 3.289652720262814e-07,
+            "significant": true,
+            "interpretation": "Correlação fraca negativa (-0.185) e estatisticamente significativa (p=0.000)"
+          }
+        }
+      },
+      "RQ02": {
+        "question": "Relação entre maturidade (idade) e características de qualidade",
+        "hypothesis": "Repositórios mais maduros tendem a ter pior qualidade",
+        "results": {
+          "cbo_mean": {
+            "spearman_correlation": -0.019806941610437466,
+            "p_value": 0.5881052457194891,
+            "significant": false,
+            "interpretation": "Correlação fraca negativa (-0.020) mas não estatisticamente não significativa (p=0.588)"
+          },
+          "dit_mean": {
+            "spearman_correlation": 0.1555251006746184,
+            "p_value": 1.8842408473135938e-05,
+            "significant": true,
+            "interpretation": "Correlação fraca positiva (0.156) e estatisticamente significativa (p=0.000)"
+          },
+          "lcom_mean": {
+            "spearman_correlation": 0.06219938403738293,
+            "p_value": 0.0887164754881048,
+            "significant": false,
+            "interpretation": "Correlação fraca positiva (0.062) mas não estatisticamente não significativa (p=0.089)"
+          }
+        }
+      },
+      "RQ03": {
+        "question": "Relação entre atividade (forks) e características de qualidade",
+        "hypothesis": "Repositórios mais ativos tendem a ter melhor qualidade",
+        "results": {
+          "cbo_mean": {
+            "spearman_correlation": -0.08592281858512,
+            "p_value": 0.018596497627702636,
+            "significant": true,
+            "interpretation": "Correlação fraca negativa (-0.086) e estatisticamente significativa (p=0.019)"
+          },
+          "dit_mean": {
+            "spearman_correlation": 0.07413426994363387,
+            "p_value": 0.042391341711068176,
+            "significant": true,
+            "interpretation": "Correlação fraca positiva (0.074) e estatisticamente significativa (p=0.042)"
+          },
+          "lcom_mean": {
+            "spearman_correlation": -0.1783654886234341,
+            "p_value": 8.830047618980392e-07,
+            "significant": true,
+            "interpretation": "Correlação fraca negativa (-0.178) e estatisticamente significativa (p=0.000)"
+          }
+        }
+      }
+    },
+    "estatisticas_gerais": {
+      "repositorios_analisados": 750,
+      "media_estrelas": 9611.672,
+      "media_idade_anos": 9.631106666666666,
+      "media_loc": 7355489.526666666,
+      "media_cbo": 9.162253333333334,
+      "media_dit": 5.5082933333333335,
+      "media_lcom": 3.7385466666666667
+    }
+  },
+  "discussao": {
+    "interpretacao_resultados": {
+      "RQ01": {
+        "questao": "Relação entre popularidade (estrelas) e características de qualidade",
+        "hipotese": "Repositórios mais populares tendem a ter melhor qualidade",
+        "achados_significativos": [
+          {
+            "metrica": "cbo_mean",
+            "correlacao": -0.11589530584979817,
+            "interpretacao": "Correlação fraca negativa (-0.116) e estatisticamente significativa (p=0.001)"
+          },
+          {
+            "metrica": "lcom_mean",
+            "correlacao": -0.185141163849966,
+            "interpretacao": "Correlação fraca negativa (-0.185) e estatisticamente significativa (p=0.000)"
+          }
+        ]
+      },
+      "RQ02": {
+        "questao": "Relação entre maturidade (idade) e características de qualidade",
+        "hipotese": "Repositórios mais maduros tendem a ter pior qualidade",
+        "achados_significativos": [
+          {
+            "metrica": "dit_mean",
+            "correlacao": 0.1555251006746184,
+            "interpretacao": "Correlação fraca positiva (0.156) e estatisticamente significativa (p=0.000)"
+          }
+        ]
+      },
+      "RQ03": {
+        "questao": "Relação entre atividade (forks) e características de qualidade",
+        "hipotese": "Repositórios mais ativos tendem a ter melhor qualidade",
+        "achados_significativos": [
+          {
+            "metrica": "cbo_mean",
+            "correlacao": -0.08592281858512,
+            "interpretacao": "Correlação fraca negativa (-0.086) e estatisticamente significativa (p=0.019)"
+          },
+          {
+            "metrica": "dit_mean",
+            "correlacao": 0.07413426994363387,
+            "interpretacao": "Correlação fraca positiva (0.074) e estatisticamente significativa (p=0.042)"
+          },
+          {
+            "metrica": "lcom_mean",
+            "correlacao": -0.1783654886234341,
+            "interpretacao": "Correlação fraca negativa (-0.178) e estatisticamente significativa (p=0.000)"
+          }
+        ]
+      }
+    },
+    "comparacao_hipoteses": {
+      "rq01": "Hipótese: Repositórios populares têm melhor qualidade. Resultado: [A ser preenchido com base nos dados]",
+      "rq02": "Hipótese: Repositórios maduros têm pior qualidade. Resultado: [A ser preenchido com base nos dados]",
+      "rq03": "Hipótese: Repositórios ativos têm melhor qualidade. Resultado: [A ser preenchido com base nos dados]",
+      "rq04": "Hipótese: Repositórios grandes têm pior qualidade. Resultado: [A ser preenchido com base nos dados]"
+    },
+    "implicacoes_praticas": {
+      "desenvolvedores": "Os resultados podem orientar práticas de desenvolvimento",
+      "gerentes_projeto": "Insights sobre fatores que influenciam qualidade",
+      "comunidade_opensource": "Entendimento sobre padrões de qualidade em projetos colaborativos"
+    },
+    "limitacoes": {
+      "amostra": "Apenas repositórios Java populares foram analisados",
+      "metricas": "Métricas CK são apenas uma dimensão da qualidade",
+      "causalidade": "Correlações não implicam relações causais",
+      "temporal": "Análise em um momento específico no tempo"
+    },
+    "trabalhos_futuros": {
+      "metricas_adicionais": "Incluir outras métricas de qualidade e processo",
+      "analise_temporal": "Estudar evolução da qualidade ao longo do tempo",
+      "outras_linguagens": "Estender análise para outras linguagens de programação",
+      "fatores_contextuais": "Considerar fatores como domínio, equipe, metodologia"
+    }
+  },
+  "conclusoes": {
+    "resumo_principais_achados": [
+      {
+        "questao": "Relação entre popularidade (estrelas) e características de qualidade",
+        "correlacoes_significativas": 2,
+        "total_metricas": 3
+      },
+      {
+        "questao": "Relação entre maturidade (idade) e características de qualidade",
+        "correlacoes_significativas": 1,
+        "total_metricas": 3
+      },
+      {
+        "questao": "Relação entre atividade (forks) e características de qualidade",
+        "correlacoes_significativas": 3,
+        "total_metricas": 3
+      }
+    ],
+    "contribuicoes": [
+      "Evidências empíricas sobre relação entre processo e qualidade em projetos Java",
+      "Metodologia para análise de qualidade em repositórios open source",
+      "Insights para desenvolvedores e gerentes de projeto",
+      "Base para estudos futuros sobre qualidade de software"
+    ],
+    "recomendacoes": [
+      "Desenvolvedores devem considerar popularidade e atividade como indicadores de qualidade",
+      "Projetos maduros podem se beneficiar de refatorações regulares",
+      "Tamanho do projeto deve ser monitorado para evitar degradação da qualidade",
+      "Ferramentas de análise estática devem ser integradas ao processo de desenvolvimento"
+    ]
+  },
+  "referencias": [
+    "Chidamber, S. R., & Kemerer, C. F. (1994). A metrics suite for object oriented design",
+    "GitHub API Documentation. https://docs.github.com/en/rest",
+    "CK Tool. https://github.com/mauricioaniche/ck"
+  ],
+  "apendices": {
+    "metricas_detalhadas": "Ver arquivo consolidated_data.csv",
+    "visualizacoes": "Ver diretório data/plots/",
+    "codigo_fonte": "Ver diretório scripts/"
+  }
+}

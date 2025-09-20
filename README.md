@@ -58,12 +58,21 @@ lab2/
 
 ### Opção 1: Execução Automática (Recomendada)
 
+**Sprint 1:**
+
 ```bash
 # Instalar dependências
 pip install -r requirements.txt
 
 # Executar toda a Sprint 1 automaticamente
 python run_sprint1.py
+```
+
+**Sprint 2:**
+
+```bash
+# Executar toda a Sprint 2 automaticamente
+python run_sprint2.py
 ```
 
 ### Opção 2: Execução Manual Passo a Passo
@@ -104,15 +113,46 @@ python scripts/run_ck_analysis.py
 python scripts/process_results.py
 ```
 
+**Sprint 2 - Análise e Visualização:**
+
+7. **Análise estatística avançada:**
+
+```bash
+python scripts/advanced_analysis.py
+```
+
+8. **Criar visualizações:**
+
+```bash
+python scripts/create_visualizations.py
+```
+
+9. **Gerar relatório final:**
+
+```bash
+python scripts/generate_final_report.py
+```
+
+10. **Preparar apresentação:**
+
+```bash
+python scripts/prepare_presentation.py
+```
+
 ## Resultados Esperados
 
-Após a execução, você terá:
+**Sprint 1:**
 
 - **`data/repositories.json`**: Lista dos 1000 repositórios Java mais populares
 - **`data/demo_repo_summary.csv`**: Exemplo de métricas de um repositório
 - **`data/consolidated_data.csv`**: Dataset completo com todas as métricas
-- **`data/final_report.json`**: Relatório detalhado com correlações e análises
+
+**Sprint 2:**
+
+- **`data/advanced_analysis_results.json`**: Análise estatística avançada
 - **`data/plots/`**: Gráficos de correlação e distribuições
+- **`data/relatorio_final.md`**: Relatório final completo
+- **`data/presentation/`**: Material para apresentação
 
 ## Configuração Opcional
 
@@ -127,6 +167,13 @@ export GITHUB_TOKEN=seu_token_github_aqui
 ✅ **Lista dos 1.000 repositórios Java** - `data/repositories.json`  
 ✅ **Script de Automação de clone e Coleta de Métricas** - Scripts em `scripts/`  
 ✅ **Arquivo .csv com resultado das medições de 1 repositório** - `data/demo_repo_summary.csv`
+
+## Entregáveis da Sprint 2
+
+✅ **Arquivo .csv com resultado de todas as medições dos 1.000 repositórios** - `data/consolidated_data.csv`  
+✅ **Hipóteses** - `HIPOTESES.md`  
+✅ **Análise e visualização de dados** - `data/plots/` e `data/advanced_analysis_results.json`  
+✅ **Elaboração do relatório final** - `data/relatorio_final.md`
 
 ## Análise dos Resultados
 
