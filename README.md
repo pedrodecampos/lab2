@@ -233,4 +233,3 @@ O sistema calcula automaticamente:
 
 ---
 
-**🎉 Projeto 100% completo e pronto para entrega!**
